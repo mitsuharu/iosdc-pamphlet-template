@@ -3,6 +3,19 @@ iosdc-pamphlet-template
 
 iOSDC Japan に投稿するパンフレット記事のテンプレートです。作者が iOSDC Japan 2023 で投稿したものを元に作成しました。
 
+## 環境
+
+### 必須
+
+- Node.js 20 以上
+	- vivliostyle を利用するため
+
+### 任意
+ 
+ - VS Code
+- Docker
+	- 入稿データ作成に利用します
+
 ## 執筆手順
 
 ### 初期設定
