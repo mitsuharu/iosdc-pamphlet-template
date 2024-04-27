@@ -1,12 +1,22 @@
-iosdc-2023-pamphlet
+iosdc-pamphlet-template
 ==
 
-iOSDC 2023 に投稿するパンフレット記事です。
+iOSDC Japan に投稿するパンフレット記事のテンプレートです。作者が iOSDC Japan 2023 で投稿したものを元に作成しました。
 
+## 環境
 
-## 執筆
+### 必須
 
-※ Docker 未対応です
+- Node.js 20 以上
+	- vivliostyle を利用するため
+
+### 任意
+ 
+ - VS Code
+- Docker
+	- 入稿データ作成に利用します
+
+## 執筆手順
 
 ### 初期設定
 
@@ -14,11 +24,49 @@ iOSDC 2023 に投稿するパンフレット記事です。
 yarn
 ```
 
-### PDF作成
+### 電子版のPDF作成
+
+PDFを作成する。`output/output.pdf` に出力されます。
 
 ```shell
 yarn pdf
 ```
+
+PDFを開く。
+
+```shell
+yarn open
+```
+
+PDFの作成と開くを同時に行う。
+
+```shell
+yarn start
+```
+
+
+### 入稿データの作成
+
+Docker で実行する（推奨）。`output/press.pdf` に出力されます。
+
+```shell
+yarn press
+```
+
+Docker ではなく、ローカル環境で実行する
+
+```shell
+yarn press-local
+```
+
+Docker ではなく、Colima で実行する
+
+
+```shell
+yarn press-colima
+```
+
+
 
 ## 文章校正
 
@@ -67,11 +115,11 @@ textlint を無効にしたい文章をここに書く
 <!-- textlint-enable -->
 ```
 
-
 ## テーマ変更
 
-- `./theme/my-theme-techbook/scss` 内の `.scss` ファイルを更新する。
-- 変更したら `yarn build-theme` でビルドする
+- 現状は `"@vivliostyle/theme-techbook@^1.0.1"` をベースにして、`theme/custom_theme.css` で色やフォントサイズを修正してます
+- フォントサイズなど簡単な変更は `./theme/style.css` を適宜修正する
+
 
 ### 参照
 
