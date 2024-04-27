@@ -1,10 +1,14 @@
 module.exports = {
-    title: 'Redux の副作用を直感的に管理する Redux Saga を Swift でも使いたい',
-    author: '江本光晴',
+    title: 'タイトル名',
+    author: '著者名',
     language: 'ja',
     size: 'A4',
     // theme: '@vivliostyle/theme-techbook',
-    theme: 'theme/my-theme-techbook',
+    theme: [
+      '@vivliostyle/theme-techbook',
+      // 'theme/my-theme-techbook',
+      // 'theme/style.css'
+    ],
     entry: [
       'index.md',
     ],
