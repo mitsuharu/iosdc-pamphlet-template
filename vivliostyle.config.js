@@ -3,11 +3,10 @@ module.exports = {
     author: '著者名',
     language: 'ja',
     size: 'A4',
-    // theme: '@vivliostyle/theme-techbook',
     theme: [
       '@vivliostyle/theme-techbook',
-      // 'theme/my-theme-techbook',
-      // 'theme/style.css'
+      'theme/custom_theme.css',
+      'theme/styles.css',
     ],
     entry: [
       'index.md',

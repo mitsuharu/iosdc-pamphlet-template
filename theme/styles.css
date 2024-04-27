@@ -1,0 +1,26 @@
+/* 執筆テーマの個別設定 */
+
+@media print {
+    :root {
+        /* フォントの基本サイズ */
+        /* 2023 は 14px を設定したが、書籍上では少し大きく感じた */
+      font-size: 12px;
+    }
+    .token {
+        /* ソースコードの文字サイズ */
+        /* 100% ならば基本サイズと同じ大きさになります */
+        font-size: 100%;
+      }
+}
+
+@page :left {
+    /* 下部のページ数と上部の表示を削除する */
+    --vs-page--mbox-content-top-left: "";
+    --vs-page--mbox-content-bottom-left: "";
+}
+
+@page :right {
+    /* 下部のページ数と上部の表示を削除する */
+    --vs-page--mbox-content-top-right: "";
+    --vs-page--mbox-content-bottom-right: "";
+}

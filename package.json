@@ -5,14 +5,11 @@
   "license": "MIT",
   "scripts": {
     "pdf": "vivliostyle build",
-    "press": "vivliostyle build --preflight press-ready",
-    "press-local": "vivliostyle build --preflight press-ready-local",
-    "press-colima": "colima start && vivliostyle build --preflight press-ready",
-    "press-cmd": "press-ready build -i output/output.pdf -o output/press.pdf --enforce-outline",
-    "lint-pdf": "press-ready lint output/output.pdf",
-    "lint-pdf-press": "press-ready lint output/press.pdf",
     "open": "open ./output/output.pdf",
-    "build-theme": "sass theme/my-theme-techbook/scss:theme/my-theme-techbook",
+    "start": "yarn && vivliostyle build && open ./output/output.pdf",
+    "press": "vivliostyle build --preflight press-ready -o output/press.pdf",
+    "press-local": "vivliostyle build --preflight press-ready-local -o output/press.pdf",
+    "press-colima": "colima start && vivliostyle build --preflight press-ready -o output/press.pdf",
     "lint": "textlint ./manuscripts/"
   },
   "dependencies": {
