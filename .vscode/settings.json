@@ -1,5 +1,7 @@
 {
   "cSpell.words": [
+    "bluesky",
+    "bsky",
     "discardable",
     "Hashable",
     "hasher",
@@ -11,6 +13,7 @@
     "nodenv",
     "struct",
     "techbook",
+    "techbooster",
     "textlint",
     "textlintignore",
     "typealias",
