@@ -1,9 +1,9 @@
 サンプルドキュメント
 ==
 
-<div style="text-align: right;">
+<div class="author-info">
 名前<br />
-所属など
+会社、所属やSNSなど
 </div>
 
 ## バブルソートとクイックソート
