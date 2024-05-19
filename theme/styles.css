@@ -24,3 +24,9 @@
     --vs-page--mbox-content-top-right: "";
     --vs-page--mbox-content-bottom-right: "";
 }
+
+.author-info {
+    display: flex;
+    justify-content: flex-end;
+    text-align: left;
+}
