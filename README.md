@@ -9,6 +9,8 @@ iOSDC Japan に投稿するパンフレット記事のテンプレートです�
 
 - Node.js 20 以上
 	- vivliostyle を利用するため
+	- nodenv-aliases を使って設定しています
+		- see: https://qiita.com/mitsuharu_e/items/d7005c52c9910ca0d366
 
 ### 任意
  
