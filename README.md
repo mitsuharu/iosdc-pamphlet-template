@@ -68,8 +68,6 @@ Docker ではなく、Colima で実行する
 yarn press-colima
 ```
 
-
-
 ## 文章校正
 
 校正ツール [textlint](https://textlint.github.io/) を利用して、文章校正ができます。なお、この lint ツールの使用は任意です。書き方で悩んだ・校正したい場合など、必要に応じて導入してください。

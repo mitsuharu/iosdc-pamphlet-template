@@ -8,7 +8,8 @@ meta:
 version: 1
 rules:
   - expected: iOS
-    pattern: ios
+    pattern: 
+      - (?<!Vivl)ios(?!=tyle)
   - expected: iPhone
     pattern: iphone
   - expected: iPad
