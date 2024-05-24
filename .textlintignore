@@ -4,6 +4,7 @@ README.md
 
 # Ignore by glob pattern
 
+.vivliostyle/**
 .vscode/**
 theme/**
 prh-rules/**
