@@ -222,10 +222,18 @@ pre {
   /* 偶数ページの設定 */
   margin-left: 30mm;
   margin-right: 25mm;
+
+  /* 下部のページ数と上部の表示を削除する */
+  --vs-page--mbox-content-top-left: "";
+  --vs-page--mbox-content-bottom-left: "";
 }
 
 @page :right {
   /* 奇数ページの設定 */
   margin-left: 25mm;
   margin-right: 30mm;
+
+  /* 下部のページ数と上部の表示を削除する */
+  --vs-page--mbox-content-top-right: "";
+  --vs-page--mbox-content-bottom-right: "";
 }
