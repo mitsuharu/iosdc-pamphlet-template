@@ -13,20 +13,15 @@
       }
 }
 
-@page :left {
-    /* 下部のページ数と上部の表示を削除する */
-    --vs-page--mbox-content-top-left: "";
-    --vs-page--mbox-content-bottom-left: "";
-}
-
-@page :right {
-    /* 下部のページ数と上部の表示を削除する */
-    --vs-page--mbox-content-top-right: "";
-    --vs-page--mbox-content-bottom-right: "";
-}
-
+/* 著者紹介のブロック */
 .author-info {
     display: flex;
     justify-content: flex-end;
     text-align: left;
+}
+
+/* 改行しない */
+.no-break {
+    word-wrap: break-word;
+    white-space: nowrap;
 }
