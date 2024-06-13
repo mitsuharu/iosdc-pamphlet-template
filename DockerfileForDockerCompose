@@ -1,0 +1,5 @@
+FROM node:20-alpine
+WORKDIR /workspaces/iosdc-pamphlet-template
+
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile && yarn cache clean
