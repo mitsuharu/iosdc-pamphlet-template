@@ -4,21 +4,24 @@ iOSDC Japan に投稿するパンフレット記事のテンプレートです�
 
 ## 環境
 
-### 必須
+- 最近の macOS
+
+### 必須（ローカルでビルドする場合）
 
 - Node.js 20 以上
-  - vivliostyle を利用するため
-  - nodenv-aliases を使って設定しています
+  - vivliostyle を利用するためです
+  - 作者は nodenv-aliases を使って設定しています
     - see: https://qiita.com/mitsuharu_e/items/d7005c52c9910ca0d366
 
 ### 任意
 
-- VS Code
+- Visual Studio Code
+  - ファイル保存で textlint が走るので便利 
 - Docker Desktop
   - 入稿データ作成に利用します
   - Makefile のコマンドを実行すると colima を利用します
 
-## 執筆手順
+## 執筆手順（ローカル）
 
 ### 初期設定
 
@@ -54,15 +57,21 @@ Docker で実行する（推奨）。`output/press.pdf` に出力されます。
 yarn press
 ```
 
-Docker ではなく、ローカル環境で実行する
+ローカル環境で実行する  （Docker Desktop が無い場合は make press の方が推奨です）
 
 ```shell
 yarn press-local
 ```
 
-### Make
+## 執筆手順（Docker）
 
-ローカル環境を利用せずに Docker (colima) で実行します
+- ローカル環境に Node や Docker Desktop を入れたく無い人向け
+- Docker (colima) 上でビルドします
+  - Docker Desktop は不要です
+
+### Make コマンド
+
+- make hogehoge で完結します
 
 ```text
 run             pdfを生成して開く
