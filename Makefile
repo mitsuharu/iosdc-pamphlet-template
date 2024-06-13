@@ -1,5 +1,4 @@
 # Environment variable
-
 MAKEFILE_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 MAKEFILE_PATH := $(MAKEFILE_DIR)/Makefile
 DOCKER_COMPOSE_PATH := $(MAKEFILE_DIR)/docker-compose.yml
@@ -47,29 +46,30 @@ run: \
 	pdf \
 	open
 
+.PHONY: pdf
+## pdfを生成する
+pdf: \
+	build_pdf \
+	stop_colima
+
 .PHONY: press
-## プレス版のpdfを生成
+## プレス版のpdfを生成する
 press: \
-	pdf_press \
+	build_pdf_press \
 	stop_colima
 
 .PHONY: lint
-## textlintを実行
+## textlintを実行する
 lint:
 	$(DOCKER_COMPOSE) run --rm lint
 
-.PHONY: pdf
-## pdfを生成
-pdf:
-	$(VIVLIOSTYLE_CLI) build \
-		--no-sandbox
+.PHONY: build_pdf
+build_pdf:
+	$(VIVLIOSTYLE_CLI) build
 
-.PHONY: pdf_press
-## プレス版のpdfを生成
-pdf_press:
-	$(VIVLIOSTYLE_CLI) build \
-		--preflight press-ready \
-		--output ./output/press.pdf
+.PHONY: build_pdf_press
+build_pdf_press:
+	$(VIVLIOSTYLE_CLI) build --preflight press-ready --output ./output/press.pdf
 
 .PHONY: open
 ## pdfを開く
