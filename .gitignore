@@ -201,3 +201,13 @@ dist
 output/*
 .vivliostyle
 *.css.map
+
+# Yarn v4
+
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
