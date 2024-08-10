@@ -202,7 +202,6 @@ output/*
 .vivliostyle
 *.css.map
 
-
 # Yarn v4
 
 .pnp.*
