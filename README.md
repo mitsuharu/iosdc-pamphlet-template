@@ -2,21 +2,41 @@
 
 iOSDC Japan に投稿するパンフレット記事のテンプレートです。作者が iOSDC Japan 2023 で投稿したものを元に作成しました。
 
+## 利用実績
+
+iOSDC Japan 2023
+
+- 参照：[2023に寄稿したパンフレット記事](https://speakerdeck.com/mitsuharu/redux-saga-for-swift-contributed-to-iosdc-2023-pamphlet)
+
+iOSDC Japan 2024
+
+- 現在設定されている組版です
+- 2023 版を元に、フォントサイズと余白を調整しました
+- 参照：[2024に寄稿したパンフレット記事](https://speakerdeck.com/mitsuharu/iosdc-2024-pamphlet)
+
+色について
+
+- 色の見た目は印刷の都合上、紙版と電子版で異なります
+- 実際の色味は紙のパンフレットを確認してください
+- 素人判断ですが、色（主にコードブロックの色）は問題ないと思っています
+
 ## 環境
 
-- 最近の macOS
+- macOS Sonoma 14
 
 ### 必須（ローカルでビルドする場合）
 
 - Node.js 20 以上
   - vivliostyle を利用するためです
-  - 作者は nodenv-aliases を使って設定しています
-    - see: https://qiita.com/mitsuharu_e/items/d7005c52c9910ca0d366
+- 作者は nodenv-aliases を使って設定しています
+  - see: [nodenv\-aliases を使って node\-version の管理を簡単にしよう](https://qiita.com/mitsuharu_e/items/d7005c52c9910ca0d366)
+- Yarn v4
+  - `corepack enable` で corepack を有効にしてください
 
 ### 任意
 
 - Visual Studio Code
-  - ファイル保存で textlint が走るので便利 
+  - ファイル保存で textlint が走るので便利（推奨）
 - Docker Desktop
   - 入稿データ作成に利用します
   - Makefile のコマンドを実行すると colima を利用します
@@ -73,16 +93,16 @@ yarn press-local
 
 - make hogehoge で完結します
 
-```text
-run             pdfを生成して開く
-pdf             pdfを生成する
-press           プレス版のpdfを生成する
-lint            textlintを実行する
-open            pdfを開く
-clean           生成ファイルをすべて削除
-clean_pdf       pdf関係の生成物を削除
-clean_docker    Docker関係の生成物を削除
-```
+|コマンド|内容|
+|:--|:--|
+| make run | pdfを生成して開く |
+| make pdf | pdfを生成する |
+| make press | プレス版のpdfを生成する |
+| make lint | textlintを実行する |
+| make open | pdfを開く |
+| make clean | 生成ファイルをすべて削除 |
+| make clean_pdf | pdf関係の生成物を削除 |
+| make clean_docker | Docker関係の生成物を削除 |
 
 ## 文章校正
 
