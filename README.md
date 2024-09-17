@@ -45,6 +45,14 @@ iOSDC Japan 2024
 
 ### 初期設定
 
+Yarn を利用される方は、corepack を有効にしてください。
+
+```
+corepack enable
+```
+
+環境構築
+
 ```shell
 yarn
 ```
