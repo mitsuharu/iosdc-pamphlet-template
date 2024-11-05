@@ -6,13 +6,13 @@
   "scripts": {
     "pdf": "vivliostyle build",
     "open": "open ./output/output.pdf",
-    "start": "yarn && vivliostyle build && open ./output/output.pdf",
+    "start": "vivliostyle build && open ./output/output.pdf",
     "press": "vivliostyle build --preflight press-ready -o output/press.pdf",
     "press-local": "vivliostyle build --preflight press-ready-local -o output/press.pdf",
     "lint": "textlint ./manuscripts/"
   },
   "dependencies": {
-    "@vivliostyle/cli": "^8.14.1"
+    "@vivliostyle/cli": "^8.16.0"
   },
   "devDependencies": {
     "@vivliostyle/theme-techbook": "^1.0.1",
@@ -24,5 +24,5 @@
     "textlint-rule-prh": "^6.0.0",
     "textlint-rule-spellcheck-tech-word": "^5.0.0"
   },
-  "packageManager": "yarn@4.5.0"
+  "packageManager": "yarn@4.5.1"
 }

@@ -6,6 +6,7 @@ module.exports = {
     theme: [
       '@vivliostyle/theme-techbook',
       'theme/custom_theme.css',
+      '@mitsuharu/vivliostyle-theme-noto-sans-jp',
       'theme/styles.css',
     ],
     entry: [
