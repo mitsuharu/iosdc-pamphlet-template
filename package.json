@@ -6,7 +6,7 @@
   "scripts": {
     "pdf": "vivliostyle build",
     "open": "open ./output/output.pdf",
-    "start": "yarn && vivliostyle build && open ./output/output.pdf",
+    "start": "vivliostyle build && open ./output/output.pdf",
     "press": "vivliostyle build --preflight press-ready -o output/press.pdf",
     "press-local": "vivliostyle build --preflight press-ready-local -o output/press.pdf",
     "lint": "textlint ./manuscripts/"
