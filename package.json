@@ -12,7 +12,7 @@
     "lint": "textlint ./manuscripts/"
   },
   "dependencies": {
-    "@vivliostyle/cli": "^8.16.0"
+    "@vivliostyle/cli": "^8.16.2"
   },
   "devDependencies": {
     "@vivliostyle/theme-techbook": "^1.0.1",
