@@ -20,8 +20,8 @@ jobs:
     # 環境変数を定義
     env:
       # 生成される PDF のパス
-      EBOOK_PDF_PATH: ./book/output/ebook.pdf
-      PRESS_PDF_PATH: ./book/output/press.pdf
+      EBOOK_PDF_PATH: ./output/output.pdf
+      PRESS_PDF_PATH: ./output/press.pdf
     
     steps:
 
