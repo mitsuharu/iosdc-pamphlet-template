@@ -17,7 +17,7 @@ jobs:
     # 環境変数を定義
     env:
       # 生成される PDF のパス
-      PDF_PATH: ./book/output/ebook.pdf
+      PDF_PATH: ./output/output.pdf
 
     steps:
       # リポジトリをチェックアウト
