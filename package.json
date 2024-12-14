@@ -15,7 +15,6 @@
     "@vivliostyle/cli": "^8.17.1"
   },
   "devDependencies": {
-    "@vivliostyle/theme-techbook": "^1.0.1",
     "press-ready": "^4.0.3",
     "textlint": "^14.4.0",
     "textlint-filter-rule-comments": "^1.2.2",
