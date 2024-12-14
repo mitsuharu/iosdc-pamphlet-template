@@ -1147,32 +1147,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vivliostyle/theme-base@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@vivliostyle/theme-base@npm:1.0.1"
-  peerDependencies:
-    "@vivliostyle/cli": ">=7"
-  peerDependenciesMeta:
-    "@vivliostyle/cli":
-      optional: true
-  checksum: 10c0/3eb0a24b8d435868c9089936f4819159412907ccd804643d66eb7141fa6e67b4d1985091b6759bebd982569bf6113b97a3f28f1d25ced9c32646444d6e228ee1
-  languageName: node
-  linkType: hard
-
-"@vivliostyle/theme-techbook@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@vivliostyle/theme-techbook@npm:1.0.1"
-  dependencies:
-    "@vivliostyle/theme-base": "npm:^1.0.1"
-  peerDependencies:
-    "@vivliostyle/cli": ">=7"
-  peerDependenciesMeta:
-    "@vivliostyle/cli":
-      optional: true
-  checksum: 10c0/df2928835dffd2b10b5e6ba889729ba793cdba56435a661c85144fed4c384f5dd213a29850f3a88e83322741582b26c38a277ea477556d860d5282033c8d0827
-  languageName: node
-  linkType: hard
-
 "@vivliostyle/vfm@npm:2.2.1":
   version: 2.2.1
   resolution: "@vivliostyle/vfm@npm:2.2.1"
@@ -3605,7 +3579,6 @@ __metadata:
   resolution: "iosdc-pamphlet-template@workspace:."
   dependencies:
     "@vivliostyle/cli": "npm:^8.17.1"
-    "@vivliostyle/theme-techbook": "npm:^1.0.1"
     press-ready: "npm:^4.0.3"
     textlint: "npm:^14.4.0"
     textlint-filter-rule-comments: "npm:^1.2.2"
