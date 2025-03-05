@@ -26,7 +26,7 @@ iOSDC Japan 2024
 
 ### 必須（ローカルでビルドする場合）
 
-- Node.js 20 以上
+- Node.js 22 以上
   - vivliostyle を利用するためです
 - 作者は nodenv-aliases を使って設定しています
   - see: [nodenv\-aliases を使って node\-version の管理を簡単にしよう](https://qiita.com/mitsuharu_e/items/d7005c52c9910ca0d366)
