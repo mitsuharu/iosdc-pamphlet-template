@@ -34,7 +34,7 @@ jobs:
       - name: make PDF
         run: |
           corepack enable
-          yarn install --frozen-lockfile
+          yarn install --immutable
           yarn pdf
 
       # PDFが生成されたかどうかをチェックする
