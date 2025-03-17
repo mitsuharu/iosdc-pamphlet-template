@@ -14,10 +14,13 @@ updates:
     groups:
       update-eslint:
         patterns:
-          - "eslint|prettier"
+          - "eslint"
+          - "eslint-*"
+          - "@eslint/*"
       update-textlint:
         patterns:
           - "textlint"
+          - "textlint-*"
   - package-ecosystem: "github-actions"
     directory: "/"
     open-pull-requests-limit: 10
