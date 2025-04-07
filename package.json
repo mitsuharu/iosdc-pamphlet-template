@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "press-ready": "^4.0.3",
-    "textlint": "^14.5.0",
+    "textlint": "^14.6.0",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-rule-preset-ja-spacing": "^2.4.3",
     "textlint-rule-preset-ja-technical-writing": "^12.0.2",
