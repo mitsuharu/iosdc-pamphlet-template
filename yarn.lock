@@ -49,6 +49,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/helper-string-parser@npm:^7.25.9":
+  version: 7.25.9
+  resolution: "@babel/helper-string-parser@npm:7.25.9"
+  checksum: 10c0/7244b45d8e65f6b4338a6a68a8556f2cb161b782343e97281a5f2b9b93e420cad0d9f5773a59d79f61d0c448913d06f6a2358a87f2e203cf112e3c5b53522ee6
+  languageName: node
+  linkType: hard
+
 "@babel/helper-validator-identifier@npm:^7.24.7":
   version: 7.24.7
   resolution: "@babel/helper-validator-identifier@npm:7.24.7"
@@ -84,12 +91,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/parser@npm:^7.27.0":
+  version: 7.27.0
+  resolution: "@babel/parser@npm:7.27.0"
+  dependencies:
+    "@babel/types": "npm:^7.27.0"
+  bin:
+    parser: ./bin/babel-parser.js
+  checksum: 10c0/ba2ed3f41735826546a3ef2a7634a8d10351df221891906e59b29b0a0cd748f9b0e7a6f07576858a9de8e77785aad925c8389ddef146de04ea2842047c9d2859
+  languageName: node
+  linkType: hard
+
 "@babel/parser@npm:^7.7.5":
   version: 7.22.4
   resolution: "@babel/parser@npm:7.22.4"
   bin:
     parser: ./bin/babel-parser.js
   checksum: 10c0/86e2abfb60faf523dc97d19f41388d8e46c02af306374618d638c960a49e74f8c23ef73032b5bde6011d64ee23820388427bd1d00a54be68f2e4545fa0c5b9bb
+  languageName: node
+  linkType: hard
+
+"@babel/types@npm:^7.27.0":
+  version: 7.27.0
+  resolution: "@babel/types@npm:7.27.0"
+  dependencies:
+    "@babel/helper-string-parser": "npm:^7.25.9"
+    "@babel/helper-validator-identifier": "npm:^7.25.9"
+  checksum: 10c0/6f1592eabe243c89a608717b07b72969be9d9d2fce1dee21426238757ea1fa60fdfc09b29de9e48d8104311afc6e6fb1702565a9cc1e09bc1e76f2b2ddb0f6e1
   languageName: node
   linkType: hard
 
@@ -3752,7 +3780,7 @@ __metadata:
     textlint-filter-rule-comments: "npm:^1.2.2"
     textlint-rule-preset-ja-spacing: "npm:^2.4.3"
     textlint-rule-preset-ja-technical-writing: "npm:^12.0.2"
-    textlint-rule-prh: "npm:^6.0.0"
+    textlint-rule-prh: "npm:^6.1.0"
     textlint-rule-spellcheck-tech-word: "npm:^5.0.0"
   languageName: unknown
   linkType: soft
@@ -7511,6 +7539,17 @@ __metadata:
     prh: "npm:^5.4.4"
     textlint-rule-helper: "npm:^2.3.1"
   checksum: 10c0/7fdb9a29dc8529366018af9e6215727ea4e51979b62872a6cd4ef55b15deaffc534db9a03c6a150ffd39869bed98652e5b157efb341ee5a8b6b52debb55e5a70
+  languageName: node
+  linkType: hard
+
+"textlint-rule-prh@npm:^6.1.0":
+  version: 6.1.0
+  resolution: "textlint-rule-prh@npm:6.1.0"
+  dependencies:
+    "@babel/parser": "npm:^7.27.0"
+    prh: "npm:^5.4.4"
+    textlint-rule-helper: "npm:^2.3.1"
+  checksum: 10c0/c9bd3a8a4e2af283b498a1a4659cff2ea000937e10fc4a148c4fbb2a6cebaddfc9abc499b1ff0fd238ba77f4f6cd9dcc3bb93fc7f0093297bd4a4af02f6c5b12
   languageName: node
   linkType: hard
 
