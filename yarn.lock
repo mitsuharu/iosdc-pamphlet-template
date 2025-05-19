@@ -1529,9 +1529,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vivliostyle/cli@npm:9.1.0":
-  version: 9.1.0
-  resolution: "@vivliostyle/cli@npm:9.1.0"
+"@vivliostyle/cli@npm:9.1.1":
+  version: 9.1.1
+  resolution: "@vivliostyle/cli@npm:9.1.1"
   dependencies:
     "@babel/code-frame": "npm:7.26.2"
     "@humanwhocodes/momoa": "npm:3.3.8"
@@ -1584,7 +1584,7 @@ __metadata:
   bin:
     vivliostyle: dist/cli.js
     vs: dist/cli.js
-  checksum: 10c0/a38c4080eb5fa91ce1d06f0d5b1ca44817dbd01b6204f7f225dc1433706e80935f2958421a622022afb775038798c202bfd881ad55c158d531b7b5b6cd8b1d95
+  checksum: 10c0/b05405f7ac0f1dc0b5fe78124e363e64c35dd1e46665b9caf54bb6b19247392c3dd204d0b1541a68947d421f63e6e6ec8a7cd6cdcd503e3a5f2919edc4c6fec0
   languageName: node
   linkType: hard
 
@@ -3930,7 +3930,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "iosdc-pamphlet-template@workspace:."
   dependencies:
-    "@vivliostyle/cli": "npm:9.1.0"
+    "@vivliostyle/cli": "npm:9.1.1"
     press-ready: "npm:^4.0.3"
     textlint: "npm:^14.7.1"
     textlint-filter-rule-comments: "npm:^1.2.2"
