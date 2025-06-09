@@ -6,7 +6,7 @@ module.exports = {
     theme: [
       '@mitsuharu/vivliostyle-theme-iosdc-pamphlet@0.1.5',
       '@mitsuharu/vivliostyle-theme-noto-sans-jp',
-      'theme/styles.css',
+      'theme/styles',
     ],
     entry: [
       'index.md',
