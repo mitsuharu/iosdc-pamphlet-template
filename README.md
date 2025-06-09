@@ -22,7 +22,7 @@ iOSDC Japan 2024
 
 ## 環境
 
-- macOS Sonoma 14
+- macOS Sequoia 15.5 で確認しました
 
 ### 必須（ローカルでビルドする場合）
 
@@ -47,7 +47,7 @@ iOSDC Japan 2024
 
 Yarn を利用される方は、corepack を有効にしてください。
 
-```
+```shell
 corepack enable
 ```
 
@@ -161,8 +161,10 @@ textlint を無効にしたい文章をここに書く
 
 ## テーマ変更
 
-- 現状は `"@vivliostyle/theme-techbook@^1.0.1"` をベースにして、`theme/custom_theme.css` で色やフォントサイズを修正してます
-- フォントサイズなど簡単な変更は `./theme/style.css` を適宜修正する
+- 利用してるテーマは [@mitsuharu/vivliostyle\-theme\-iosdc\-pamphlet](https://www.npmjs.com/package/@mitsuharu/vivliostyle-theme-iosdc-pamphlet) です
+  - 標準テーマの `"@vivliostyle/theme-techbook"` をベースにしています
+  - 拙作なので、PR など歓迎です
+- フォントサイズなど簡単な変更は `./theme/styles/styles.css` を適宜修正する
 
 ### 参照
 
