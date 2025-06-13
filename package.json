@@ -12,7 +12,7 @@
     "lint": "textlint ./manuscripts/"
   },
   "dependencies": {
-    "@vivliostyle/cli": "9.1.1"
+    "@vivliostyle/cli": "9.2.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
