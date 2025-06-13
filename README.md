@@ -159,6 +159,11 @@ textlint を無効にしたい文章をここに書く
 <!-- textlint-enable -->
 ```
 
+### textlint MCP
+
+- 「現在のファイルをtextlint MCPを使って、見つかったテキストの問題を説明してください」などでAIアシスタントに校正を依頼してください
+- 詳細は https://efcl.info/2025/06/10/textlint-mcp/ を参照してください
+
 ## テーマ変更
 
 - 利用してるテーマは [@mitsuharu/vivliostyle\-theme\-iosdc\-pamphlet](https://www.npmjs.com/package/@mitsuharu/vivliostyle-theme-iosdc-pamphlet) です
