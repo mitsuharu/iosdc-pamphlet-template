@@ -1,27 +1,62 @@
 /* 執筆テーマの個別設定 */
 
 @media print {
-    :root {
-        /* フォントの基本サイズ */
-        /* 2023 は 14px を設定したが、書籍上では少し大きく感じた */
-      font-size: 12px;
-    }
-    .token {
-        /* ソースコードの文字サイズ */
-        /* 100% ならば基本サイズと同じ大きさになります */
-        font-size: 100%;
-      }
+  :root {
+    /* フォントの基本サイズ */
+    /* 2023 は 14px を設定したが、書籍上では少し大きく感じた */
+    font-size: 12px;
+  }
+  .token {
+    /* ソースコードの文字サイズ */
+    /* 100% ならば基本サイズと同じ大きさになります */
+    font-size: 100%;
+  }
 }
 
 /* 著者紹介のブロック */
 .author-info {
-    display: flex;
-    justify-content: flex-end;
-    text-align: left;
+  display: flex;
+  justify-content: flex-end;
+  text-align: left;
+  align-items: center;
 }
 
 /* 改行しない */
 .no-break {
-    word-wrap: break-word;
-    white-space: nowrap;
+  word-wrap: break-word;
+  white-space: nowrap;
+}
+
+.profile-container {
+  display: flex;
+  justify-content: flex-end;
+  text-align: left;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.profile-icon {
+  width: auto;
+  height: 60px;
+  margin-right: 10px;
+}
+
+.profile-text-area {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.profile-text-main {
+  font-size: 1.1em;
+  font-weight: bold;
+  word-wrap: break-word;
+  white-space: nowrap;
+}
+
+.profile-text-sub {
+  font-size: 0.9em;
+  font-weight: normal;
+  word-wrap: break-word;
+  white-space: nowrap;
 }
