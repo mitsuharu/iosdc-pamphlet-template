@@ -6,6 +6,16 @@
 Bluesky: @????.bsky.social
 </div>
 
+<!-- アイコン付き著者プロフィール -->
+<!-- <div class="profile-container">
+  <img src="./images/icon.png" alt="アイコン" class="profile-icon" />
+  <div class="profile-text-area">
+    <div class="profile-text-main">サンプルたろう</div>
+    <div class="profile-text-sub">株式会社サンプル</div>
+    <div class="profile-text-sub">https://example.com</div>
+  </div>
+</div> -->
+
 バブルソートは、隣接する要素を比較して並べ替える簡単なソートアルゴリズムです。初学者にも分かりやすいように、Swift のコードと一緒にイラストと表を使って説明します。[^ChatGPT]
 
 [^ChatGPT]: この文章と画像は ChatGPT で書きました
