@@ -37,7 +37,7 @@
 
 .profile-icon {
   width: auto;
-  height: 60px;
+  height: 60px; /* アイコンの高さ。テキストエリアに対して可変にしたいが、よく分からん */
   margin-right: 10px;
 }
 
