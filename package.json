@@ -9,13 +9,15 @@
     "start": "vivliostyle build && open ./output/output.pdf",
     "press": "vivliostyle build --preflight press-ready -o output/press.pdf",
     "press-local": "vivliostyle build --preflight press-ready-local -o output/press.pdf",
-    "lint": "textlint ./manuscripts/"
+    "lint": "textlint ./manuscripts/",
+    "check": "biome check",
+    "check-write": "biome check --write"
   },
   "dependencies": {
     "@vivliostyle/cli": "9.2.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
+    "@biomejs/biome": "2.0.5",
     "press-ready": "^4.0.3",
     "textlint": "^14.8.4",
     "textlint-filter-rule-comments": "^1.2.2",
