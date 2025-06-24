@@ -10,7 +10,8 @@
     "press": "vivliostyle build --preflight press-ready -o output/press.pdf",
     "press-local": "vivliostyle build --preflight press-ready-local -o output/press.pdf",
     "lint": "textlint ./manuscripts/",
-    "check": "biome check"
+    "check": "biome check",
+    "check-write": "biome check --write"
   },
   "dependencies": {
     "@vivliostyle/cli": "9.2.0"
