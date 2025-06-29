@@ -4,7 +4,7 @@ module.exports = {
   language: 'ja',
   size: 'A4',
   theme: [
-    '@mitsuharu/vivliostyle-theme-iosdc-pamphlet@0.1.5',
+    '@mitsuharu/vivliostyle-theme-iosdc-pamphlet@0.2.0',
     '@mitsuharu/vivliostyle-theme-noto-sans-jp',
     'theme/styles',
   ],
