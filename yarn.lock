@@ -1660,9 +1660,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vivliostyle/cli@npm:9.3.2":
-  version: 9.3.2
-  resolution: "@vivliostyle/cli@npm:9.3.2"
+"@vivliostyle/cli@npm:9.3.3":
+  version: 9.3.3
+  resolution: "@vivliostyle/cli@npm:9.3.3"
   dependencies:
     "@babel/code-frame": "npm:7.26.2"
     "@humanwhocodes/momoa": "npm:3.3.8"
@@ -1670,7 +1670,7 @@ __metadata:
     "@npmcli/arborist": "npm:8.0.0"
     "@vivliostyle/jsdom": "npm:25.0.1-vivliostyle-cli.1"
     "@vivliostyle/vfm": "npm:2.2.1"
-    "@vivliostyle/viewer": "npm:2.33.1"
+    "@vivliostyle/viewer": "npm:2.33.2"
     ajv: "npm:8.17.1"
     ajv-formats: "npm:3.0.1"
     archiver: "npm:7.0.1"
@@ -1714,16 +1714,16 @@ __metadata:
   bin:
     vivliostyle: dist/cli.js
     vs: dist/cli.js
-  checksum: 10c0/d38494d776e5ae0b07671616c8c290a22a25b2d8805010bfa13816647c209044e8b41bf051b9cef0fc1b6db983f9d7f08aa4371f7e3e23ae1e672751e130cd60
+  checksum: 10c0/165985ac57127f5ef18803553a4b8260b48f34e8cc83ae7399bafb27298fe727004d94ea2c7b9dad1214e1d14f10a11e2254849038798b864857ae73e9be9ec1
   languageName: node
   linkType: hard
 
-"@vivliostyle/core@npm:^2.33.1":
-  version: 2.33.1
-  resolution: "@vivliostyle/core@npm:2.33.1"
+"@vivliostyle/core@npm:^2.33.2":
+  version: 2.33.2
+  resolution: "@vivliostyle/core@npm:2.33.2"
   dependencies:
     fast-diff: "npm:^1.2.0"
-  checksum: 10c0/1bce4905b6fc6cb24ab17a2d61bcbb26d76f98d75980e252a26a4999b5b125a185c9708249709a275f93adf3824bbc5cf79e2ecfde9659cbe15c1aa1805173d7
+  checksum: 10c0/39a224831f3bdadba86e49341501fd7904c08fbe17669ccf0fc801ff3ea4857f08940e020fa306a86bc2a57c8f1f42cbd227afff9289d347396c296de2cfc5af
   languageName: node
   linkType: hard
 
@@ -1804,14 +1804,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vivliostyle/viewer@npm:2.33.1":
-  version: 2.33.1
-  resolution: "@vivliostyle/viewer@npm:2.33.1"
+"@vivliostyle/viewer@npm:2.33.2":
+  version: 2.33.2
+  resolution: "@vivliostyle/viewer@npm:2.33.2"
   dependencies:
-    "@vivliostyle/core": "npm:^2.33.1"
+    "@vivliostyle/core": "npm:^2.33.2"
     i18next-ko: "npm:^3.0.1"
     knockout: "npm:^3.5.0"
-  checksum: 10c0/b574d988eff6e2525634a12786d59dc536ec875949719ee2cb5bf07944a3d02ebdce5c1d130d31b76b6bb8031d5ee910b6ad73f5e42728986d79e8d7024eb839
+  checksum: 10c0/138c42cd4e6a8d10a50a52479b98c7eb19ddbdb4bd879a033a069976a2c8cf681a78b14914e49dd512ad7f4633e4be6d3afb3030198cc457a3fef9864c994362
   languageName: node
   linkType: hard
 
@@ -4319,7 +4319,7 @@ __metadata:
   resolution: "iosdc-pamphlet-template@workspace:."
   dependencies:
     "@biomejs/biome": "npm:2.0.6"
-    "@vivliostyle/cli": "npm:9.3.2"
+    "@vivliostyle/cli": "npm:9.3.3"
     press-ready: "npm:^4.0.3"
     textlint: "npm:^15.0.1"
     textlint-filter-rule-comments: "npm:^1.2.2"

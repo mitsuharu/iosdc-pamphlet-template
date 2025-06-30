@@ -14,7 +14,7 @@
     "check-write": "biome check --write"
   },
   "dependencies": {
-    "@vivliostyle/cli": "9.3.2"
+    "@vivliostyle/cli": "9.3.3"
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.6",
