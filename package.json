@@ -18,6 +18,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.1.1",
+    "@textlint-ja/textlint-rule-preset-ai-writing": "^1.5.0",
     "press-ready": "^4.0.3",
     "textlint": "^15.2.0",
     "textlint-filter-rule-comments": "^1.2.2",
