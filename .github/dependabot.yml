@@ -12,15 +12,11 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      update-eslint:
-        patterns:
-          - "eslint"
-          - "eslint-*"
-          - "@eslint/*"
       update-textlint:
         patterns:
           - "textlint"
           - "textlint-*"
+          - "@textlint-ja/*"
   - package-ecosystem: "github-actions"
     directory: "/"
     open-pull-requests-limit: 10
