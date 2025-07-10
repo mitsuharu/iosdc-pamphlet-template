@@ -10,6 +10,11 @@
       }
     },
     "preset-ja-technical-writing": true,
+    "@textlint-ja/preset-ai-writing": {
+      "ai-tech-writing-guideline": {
+        "severity": "info"
+      }
+    },
     "spellcheck-tech-word": true,
     "prh": {
       "rulePaths": ["./prh-rules/media/techbooster.yml"]
