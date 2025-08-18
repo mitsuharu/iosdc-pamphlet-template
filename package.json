@@ -17,7 +17,7 @@
     "@vivliostyle/cli": "9.5.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.1.4",
+    "@biomejs/biome": "2.2.0",
     "@textlint-ja/textlint-rule-preset-ai-writing": "^1.5.0",
     "press-ready": "^4.0.3",
     "textlint": "^15.2.0",
