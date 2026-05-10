@@ -1226,7 +1226,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@textlint-ja/textlint-rule-preset-ai-writing@npm:^1.5.0":
+"@textlint-ja/textlint-rule-preset-ai-writing@npm:^1.6.3":
   version: 1.6.3
   resolution: "@textlint-ja/textlint-rule-preset-ai-writing@npm:1.6.3"
   dependencies:
@@ -4774,11 +4774,11 @@ __metadata:
   resolution: "iosdc-pamphlet-template@workspace:."
   dependencies:
     "@biomejs/biome": "npm:2.4.13"
-    "@textlint-ja/textlint-rule-preset-ai-writing": "npm:^1.5.0"
+    "@textlint-ja/textlint-rule-preset-ai-writing": "npm:^1.6.3"
     "@vivliostyle/cli": "npm:10.3.1"
     press-ready: "npm:^4.0.3"
-    textlint: "npm:^15.2.0"
-    textlint-filter-rule-comments: "npm:^1.2.2"
+    textlint: "npm:^15.6.0"
+    textlint-filter-rule-comments: "npm:^1.3.0"
     textlint-rule-preset-ja-spacing: "npm:^2.4.3"
     textlint-rule-preset-ja-technical-writing: "npm:^12.0.2"
     textlint-rule-prh: "npm:^6.1.0"
@@ -8340,7 +8340,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"textlint-filter-rule-comments@npm:^1.2.2":
+"textlint-filter-rule-comments@npm:^1.3.0":
   version: 1.3.0
   resolution: "textlint-filter-rule-comments@npm:1.3.0"
   checksum: 10c0/52eef93c7f6ef246cd88d072153bbb65b465dbe8b19b7516a6a67ce6d81fbbed10c2b4d81b45a6897cd93a1823c167cb69c93252c80eef4834e39ea7316942bc
@@ -8784,7 +8784,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"textlint@npm:^15.2.0":
+"textlint@npm:^15.6.0":
   version: 15.6.0
   resolution: "textlint@npm:15.6.0"
   dependencies:
