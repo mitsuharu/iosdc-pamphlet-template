@@ -27,14 +27,18 @@ jobs:
 
       # リポジトリをチェックアウト
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       # Node.jsをセットアップ
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
           node-version-file: '.node-version'
       
+      # vivliostyle-cli コンテナ（UID 1000）が book/ に書き込めるようにする
+      - name: Fix workspace ownership for vivliostyle container
+        run: sudo chown -R 1000:1000 ${{ github.workspace }}
+        
       # PDFを作成する
       - name: make PDF
         run: |
@@ -49,13 +53,18 @@ jobs:
 
           make press
           if [ ! -f "${PRESS_PDF_PATH}" ]; then
-            echo "エラー: 電子版 PDF の生成に失敗しました。"
+            echo "エラー: プレス版 PDF の生成に失敗しました。"
             exit 1
           fi
-          
+      
+      # リリース作成のために所有権を runner に戻す
+      - name: Restore workspace ownership
+        if: always()
+        run: sudo chown -R $(id -u):$(id -g) ${{ github.workspace }}
+      
       # リリースの作成
       - name: Release
-        uses: softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b # v2.5.0
+        uses: softprops/action-gh-release@153bb8e04406b158c6c84fc1615b65b24149a1fe # v2.6.1
         with:
           generate_release_notes: true
           files: |
