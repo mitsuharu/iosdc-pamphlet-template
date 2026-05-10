@@ -34,11 +34,7 @@ jobs:
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
           node-version-file: '.node-version'
-      
-      # vivliostyle-cli コンテナ（UID 1000）が book/ に書き込めるようにする
-      - name: Fix workspace ownership for vivliostyle container
-        run: sudo chown -R 1000:1000 ${{ github.workspace }}
-        
+              
       # PDFを作成する
       - name: make PDF
         run: |
@@ -50,10 +46,17 @@ jobs:
             echo "エラー: 電子版 PDF の生成に失敗しました。"
             exit 1
           fi
-
+      
+      # vivliostyle-cli コンテナ（UID 1000）が book/ に書き込めるようにする
+      - name: Fix workspace ownership for vivliostyle container
+        run: sudo chown -R 1000:1000 ${{ github.workspace }}
+      
+      # 印刷入稿用 PDF を作成（Docker コンテナ内 UID 1000 で実行）
+      - name: Build press PDF
+        run: |
           make press
           if [ ! -f "${PRESS_PDF_PATH}" ]; then
-            echo "エラー: プレス版 PDF の生成に失敗しました。"
+            echo "エラー: 印刷入稿用 PDF の生成に失敗しました。"
             exit 1
           fi
       
