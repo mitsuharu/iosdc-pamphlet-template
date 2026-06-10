@@ -15,12 +15,12 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.14",
-    "@textlint-ja/textlint-rule-preset-ai-writing": "^1.6.3",
+    "@textlint-ja/textlint-rule-preset-ai-writing": "^1.7.0",
     "@vivliostyle/cli": "10.5.0",
     "press-ready": "^4.0.3",
-    "textlint": "^15.6.0",
+    "textlint": "^15.7.1",
     "textlint-filter-rule-comments": "^1.3.0",
-    "textlint-rule-preset-ja-spacing": "^2.4.3",
+    "textlint-rule-preset-ja-spacing": "^3.0.0",
     "textlint-rule-preset-ja-technical-writing": "^12.0.2",
     "textlint-rule-prh": "^6.1.0",
     "textlint-rule-spellcheck-tech-word": "^5.0.0"
