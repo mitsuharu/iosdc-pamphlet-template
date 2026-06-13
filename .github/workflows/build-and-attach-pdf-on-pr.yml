@@ -30,8 +30,16 @@ jobs:
         with:
           node-version-file: '.node-version'
 
+      # Chromeをセットアップ
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@2e1d749697dd1612b833dba4a722266286fbefcd # v2.1.2
+        id: setup-chrome
+
       # PDFを作成する
       - name: make PDF
+        env:
+          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true'
+          PUPPETEER_EXECUTABLE_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
         run: |
           corepack enable
           yarn install --immutable
