@@ -1,6 +1,0 @@
-{
-  "minimumPackageAgeHours": 48,
-  "npm": {
-    "minimumPackageAgeExclusions": ["@vivliostyle/*", "@mitsuharu/*"]
-  }
-}
