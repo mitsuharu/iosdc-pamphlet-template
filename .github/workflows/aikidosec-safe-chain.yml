@@ -59,7 +59,7 @@ jobs:
       # AikidoSec Safe Chain をセットアップ
       - name: Install safe-chain
         run: |
-          export SAFE_CHAIN_MINIMUM_PACKAGE_AGE_EXCLUSIONS="@vivliostyle/*,@mitsuharu/*"
+          export SAFE_CHAIN_MINIMUM_PACKAGE_AGE_EXCLUSIONS="@vivliostyle/*"
           export SAFE_CHAIN_VERSION=1.5.7
           curl -fsSL "https://raw.githubusercontent.com/AikidoSec/safe-chain/$SAFE_CHAIN_VERSION/install-scripts/install-safe-chain.sh" | sh -s -- --ci
 
