@@ -1,10 +1,21 @@
 /* 執筆テーマの個別設定 */
 
+:root {
+  /* 段組の設定 1 or 2 */
+  column-count: 1;
+}
+
 @media print {
   :root {
-    /* フォントの基本サイズ */
-    /* 2023 は 14px を設定したが、書籍上では少し大きく感じた */
-    font-size: 12px;
+    /**
+    フォントの基本サイズ
+
+    おすすめサイズは「ヒラギノ角ゴシック 8.5pt」だが、
+    本テンプレートは Noto Sans JP を利用するので少し大きく設定している。
+    お好みで設定してください。
+     */
+    font-size: 10pt;
+    line-height: 1.8;
   }
   .token {
     /* ソースコードの文字サイズ */
@@ -15,16 +26,8 @@
 
 /* 著者紹介のブロック */
 .author-info {
-  display: flex;
-  justify-content: flex-end;
-  text-align: left;
-  align-items: center;
-}
-
-/* 改行しない */
-.no-break {
-  word-wrap: break-word;
-  white-space: nowrap;
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 
 .profile-container {

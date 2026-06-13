@@ -22,7 +22,7 @@ iOSDC Japan 2024
 
 ## 環境
 
-- macOS Sequoia 15.5 で確認しました
+- macOS Tahoe 26.5.1 で確認しました
 
 ### 必須（ローカルでビルドする場合）
 
@@ -40,6 +40,28 @@ iOSDC Japan 2024
 - Docker Desktop
   - 入稿データ作成に利用します
   - Makefile のコマンドを実行すると colima を利用します
+
+## 設定
+
+段組設定は `theme/styles/styles.css` で定義される `column-count` をお好みで設定してください。
+
+```css
+:root {
+  /* 段組の設定 1 or 2 */
+  column-count: 1;
+}
+```
+
+2段組にて、画像を幅一杯に表示したい場合は次のタグを利用してください。
+
+```html
+<figure class="column-top">
+  <img src="./images/bubble-sort.png">
+  <figcaption>キャプション</figcaption>
+</figure>
+```
+
+その他、CSS は　`theme/styles/styles.css` で適宜定義して利用してください。
 
 ## 執筆手順（ローカル）
 
