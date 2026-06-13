@@ -38,8 +38,9 @@ jobs:
       # PDFを作成する
       - name: make PDF
         env:
+          PUPPETEER_SKIP_DOWNLOAD: 'true'
           PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true'
-          PUPPETEER_EXECUTABLE_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
+          PUPPETEER_EXECUTABLE_PATH: '/usr/bin/google-chrome' # Ubuntu標準のパス
         run: |
           corepack enable
           yarn install --immutable
