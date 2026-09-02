@@ -16,7 +16,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.5.5",
     "@textlint-ja/textlint-rule-preset-ai-writing": "^1.7.0",
-    "@vivliostyle/cli": "11.1.0",
+    "@vivliostyle/cli": "11.2.0",
     "press-ready": "^4.0.3",
     "textlint": "^15.8.0",
     "textlint-filter-rule-comments": "^1.3.0",
