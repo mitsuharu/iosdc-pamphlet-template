@@ -1,0 +1,55 @@
+# 整形・リントと、設定の食い違いをチェックする
+
+name: Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      # リポジトリをチェックアウト
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # Node.jsをセットアップ
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: '.node-version'
+
+      # 依存パッケージをインストールする
+      - name: Install dependencies
+        run: |
+          corepack enable
+          yarn install --immutable
+
+      # biome による整形とリントのチェック
+      - name: Check format and lint
+        run: yarn check
+
+      # package.json（npm 実行用）と Makefile（Docker 実行用）で
+      # Vivliostyle CLI のバージョンがずれていないか確かめる。
+      # ずれていると make press だけ別の CLI でビルドされてしまう
+      - name: Check Vivliostyle CLI version consistency
+        run: |
+          PKG_VERSION=$(node -p "require('./package.json').devDependencies['@vivliostyle/cli']")
+          MAKE_VERSION=$(sed -n 's/^VIVLIOSTYLE_CLI_IMAGE_TAG := //p' Makefile)
+          echo "package.json: ${PKG_VERSION} / Makefile: ${MAKE_VERSION}"
+          if [ "${PKG_VERSION}" != "${MAKE_VERSION}" ]; then
+            echo "::error::package.json と Makefile で @vivliostyle/cli のバージョンが異なります。Makefile の VIVLIOSTYLE_CLI_IMAGE_TAG を合わせてください。"
+            exit 1
+          fi
