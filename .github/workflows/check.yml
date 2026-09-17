@@ -1,4 +1,8 @@
 # 整形・リントと、設定の食い違いをチェックする
+#
+# textlint（yarn lint）はここでは実行しない。
+# 文章の最終的な表現は書き手が決めるものなので、CI で落とさない方針。
+# 校正は手元で `yarn lint` や textlint MCP を使う。
 
 name: Check
 
