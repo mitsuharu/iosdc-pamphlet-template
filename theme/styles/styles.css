@@ -1,8 +1,15 @@
-/* 執筆テーマの個別設定 */
+/*
+  執筆テーマの個別設定
+
+  @mitsuharu/vivliostyle-theme-iosdc-pamphlet の上に重ねる、原稿ごとの調整です。
+  Vivliostyle Themes v3 では、素の CSS プロパティを書くのではなく
+  --vs-* 変数を設定するのが基本です。
+  変数の一覧は node_modules/@vivliostyle/theme-base/dist/css-variables.json にあります。
+*/
 
 :root {
   /* 段組の設定 1 or 2 */
-  column-count: 1;
+  --vs-columns: 1;
 }
 
 @media print {
@@ -14,12 +21,20 @@
     本テンプレートは Noto Sans JP を利用するので少し大きく設定している。
     お好みで設定してください。
      */
-    font-size: 10pt;
-    line-height: 1.8;
+    --vs-font-size: 10pt;
+
+    /**
+    行送り
+
+    テーマ側で段落や見出しの間隔（--vs-spacing-rlh）は固定してあるので、
+    ここを変えても間隔は変わらず、行の詰まり具合だけが変わります。
+     */
+    --vs-line-height: 1.8;
   }
-  .token {
-    /* ソースコードの文字サイズ */
-    /* 100% ならば基本サイズと同じ大きさになります */
+
+  /* ソースコードの文字サイズ。100% ならば本文と同じ大きさになります */
+  code[class*="language-"],
+  pre[class*="language-"] {
     font-size: 100%;
   }
 }
