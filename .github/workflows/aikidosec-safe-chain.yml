@@ -11,6 +11,12 @@ on:
       - yarn.lock
       - pnpm-lock.yaml
 
+env:
+  # .yarnrc.yml の npmPreapprovedPackages と同じ意図。
+  # safe-chain 側にも最小公開経過日数のフィルタがあるため、
+  # 自分たちのスコープだけ対象外にする（マルウェア検査自体は有効のまま）
+  SAFE_CHAIN_MINIMUM_PACKAGE_AGE_EXCLUSIONS: '@mitsuharu/*'
+
 jobs:
   check-npm-packages-by-aikidosec-safe-chain:
     # 2025/12/18 時点では runner を ubuntu-slim にすると、AikidoSec/safe-chain が動作しない
