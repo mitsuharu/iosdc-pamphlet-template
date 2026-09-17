@@ -43,14 +43,45 @@ iOSDC Japan 2024
 
 ## 設定
 
-段組設定は `theme/styles/styles.css` で定義される `column-count` をお好みで設定してください。
+原稿ごとの調整は `theme/styles/styles.css` で行います。
+
+テーマは Vivliostyle Themes v3 系なので、素の CSS プロパティを書くのではなく
+`--vs-*` 変数を設定するのが基本です。使える変数は
+[theme\-base のドキュメント](https://github.com/vivliostyle/themes/tree/main/packages/%40vivliostyle/theme-base#readme)にあります。
+一度ビルドすると `.vivliostyle/themes/node_modules/@vivliostyle/theme-base/dist/css-variables.json`
+に一覧が展開されるので、そちらを見ても確認できます。
+
+段組は `--vs-columns` をお好みで設定してください。
 
 ```css
 :root {
   /* 段組の設定 1 or 2 */
-  column-count: 1;
+  --vs-columns: 1;
 }
 ```
+
+文字まわりは `@media print` の中で設定しています。
+
+```css
+@media print {
+  :root {
+    /* フォントの基本サイズ */
+    --vs-font-size: 10pt;
+
+    /* 行送り */
+    --vs-line-height: 1.8;
+  }
+
+  /* ソースコードの文字サイズ。100% ならば本文と同じ大きさになります */
+  code[class*="language-"],
+  pre[class*="language-"] {
+    font-size: 100%;
+  }
+}
+```
+
+行送り（`--vs-line-height`）を変えても、段落や見出しの間隔は変わりません。
+間隔はテーマ側で固定してあるので、行の詰まり具合だけが変わります。
 
 2段組にて、画像を幅一杯に表示したい場合は次のタグを利用してください。
 
@@ -61,7 +92,7 @@ iOSDC Japan 2024
 </figure>
 ```
 
-その他、CSS は　`theme/styles/styles.css` で適宜定義して利用してください。
+その他、CSS は `theme/styles/styles.css` で適宜定義して利用してください。
 
 ## 執筆手順（ローカル）
 
@@ -138,6 +169,8 @@ yarn press-local
 
 校正ツール [textlint](https://textlint.github.io/) を利用して、文章校正ができます。なお、この lint ツールの使用は任意です。書き方で悩んだ・校正したい場合など、必要に応じて導入してください。
 
+最終的な文章の表現は書き手が決めるものなので、**textlint は CI では実行していません**。手元で必要に応じて使ってください。
+
 ### ルール
 
 次のルールを導入しています。
@@ -188,10 +221,29 @@ textlint を無効にしたい文章をここに書く
 
 ## テーマ変更
 
-- 利用してるテーマは [@mitsuharu/vivliostyle\-theme\-iosdc\-pamphlet](https://www.npmjs.com/package/@mitsuharu/vivliostyle-theme-iosdc-pamphlet) です
-  - 標準テーマの `"@vivliostyle/theme-techbook"` をベースにしています
+利用しているテーマは次の2つです。どちらも `vivliostyle.config.js` でバージョンを固定しています。
+
+- [@mitsuharu/vivliostyle\-theme\-iosdc\-pamphlet](https://www.npmjs.com/package/@mitsuharu/vivliostyle-theme-iosdc-pamphlet)
+  - 組版の本体です。標準テーマの `@vivliostyle/theme-techbook` をベースにしています
   - 拙作なので、PR など歓迎です
-- フォントサイズなど簡単な変更は `./theme/styles/styles.css` を適宜修正する
+- [@mitsuharu/vivliostyle\-theme\-noto\-sans\-jp](https://www.npmjs.com/package/@mitsuharu/vivliostyle-theme-noto-sans-jp)
+  - フォントを Noto Sans JP / Noto Sans Mono に固定します
+  - フォントファイルを同梱しているので、日本語フォントが入っていない環境（GitHub Actions の runner など）でも文字化けしません
+
+フォントサイズなど簡単な変更は、テーマを差し替えずに `./theme/styles/styles.css` で調整してください（[設定](#設定)を参照）。
+
+### Vivliostyle CLI のバージョン
+
+テーマは `theme.css` からパッケージ名で `@import` しているため、**`@vivliostyle/cli` 11.3.0 以降**が必要です。それより前のバージョンでは、テーマが当たらないまま PDF ができてしまいます。
+
+CLI のバージョンは2か所にあり、**両方を揃える**必要があります。
+
+| ファイル | 用途 |
+| :--- | :--- |
+| `package.json` の `devDependencies` | `yarn pdf` など npm 側のビルド |
+| `Makefile` の `VIVLIOSTYLE_CLI_IMAGE_TAG` | `make press` など Docker 側のビルド |
+
+ずれていると CI（`Check`）で落ちます。Dependabot が CLI を更新したときは、`Update Makefile for Vivliostyle CLI` ワークフローが Makefile 側も自動で合わせます。
 
 ## このテンプレート自体のリリース
 
@@ -215,6 +267,21 @@ textlint を無効にしたい文章をここに書く
 ワークフローが、バージョンの検証、サンプル原稿のビルド、タグの作成、
 リリースの作成までを行います。リリースにはサンプル PDF が添付されます。
 
+## CI
+
+GitHub Actions で次を実行しています。
+
+| ワークフロー | 実行タイミング | 内容 |
+| :--- | :--- | :--- |
+| `Check` | `main` への push / PR | biome の整形・リント、CLI バージョンの一致確認 |
+| `Build and Attach PDF on Pull-Request` | PR | PDF をビルドして PR に添付する |
+| `Check npm packages by AikidoSec Safe Chain` | 依存関係を変える PR | 悪意ある npm パッケージが混ざっていないか検査する |
+| `Update Makefile for Vivliostyle CLI` | Dependabot の PR | Makefile の CLI バージョンを package.json に合わせる |
+| `Publish and Release PDF` | `初版` などのタグ push | 納品用の PDF を作ってリリースする |
+| `Release Template` | `1.2.3` のタグ push / 手動実行 | テンプレート自体をリリースする（管理者向け） |
+
+GitHub Actions はサプライチェーン対策のためコミット SHA で固定し、`# vX.Y.Z` のコメントを添えています。更新は Dependabot に任せています。
+
 ## セキュリティ対策
 
 ローカルおよび CI で、[@aikidosec/safe-chain](https://github.com/AikidoSec/safe-chain) を利用して、npm パッケージの安全性を確認できます。
@@ -223,12 +290,29 @@ textlint を無効にしたい文章をここに書く
 
 [@aikidosec/safe-chain](https://github.com/AikidoSec/safe-chain) の README にしたがって、ローカル環境にインストールしてください。なお、Docker を利用される場合は、安全確認したパッケージがインストールされるので原則的に対応不要です。
 
-### CI
+### CI での確認
 
-package.json またはロックファイルの変更を含む PR が作成されたら、GitHub Actions でパッケージが確認されます。なお、Actions で利用する`@aikidosec/safe-chain` はバージョン固定しています。`@aikidosec/safe-chain` が更新されたら、それ自身の安全性を確認した後に、次のファイルを更新してください。
+package.json またはロックファイルの変更を含む PR が作成されたら、GitHub Actions でパッケージが確認されます。
 
-- `.github/workflows/aikidosec-safe-chain.yml`
-	- `name: Install safe-chain` の `export SAFE_CHAIN_VERSION=1.3.2` で指定するバージョンを更新する
+Actions で利用する `@aikidosec/safe-chain` は、バージョンを固定したうえで、インストーラーの SHA256 を検証してから実行しています。更新するときは、それ自身の安全性を確認した後に `.github/workflows/aikidosec-safe-chain.yml` の `env` を2つとも書き換えてください。
+
+```yaml
+env:
+  AIKIDO_SAFE_CHAIN_VERSION: '1.5.20'
+  AIKIDO_SAFE_CHAIN_INSTALLER_SHA256: '0ad25efe15d1fa56105157a454d647223e78eb0c53d1f85e3d10afcd722e7bfd'
+```
+
+チェックサムは次で確認できます。
+
+```shell
+curl -fsSL "https://github.com/AikidoSec/safe-chain/releases/download/<バージョン>/install-safe-chain.sh" | shasum -a 256
+```
+
+### 公開直後のパッケージを入れない
+
+`.yarnrc.yml` の `npmMinimalAgeGate` を `3d` にしています。乗っ取られたアカウントから悪意あるバージョンが公開されることがあるため、**公開から3日経っていないバージョンはインストールしません**。
+
+自分たちで公開しているテーマ（`@mitsuharu/*`）は、公開直後に取り込みたいので対象外にしています。マルウェアの検査自体は有効のままです。
 
 ### 参照
 
