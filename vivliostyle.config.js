@@ -4,8 +4,8 @@ module.exports = {
   language: 'ja',
   size: 'A4',
   theme: [
-    '@mitsuharu/vivliostyle-theme-iosdc-pamphlet@0.3.1',
-    '@mitsuharu/vivliostyle-theme-noto-sans-jp',
+    '@mitsuharu/vivliostyle-theme-iosdc-pamphlet@0.4.1',
+    '@mitsuharu/vivliostyle-theme-noto-sans-jp@0.2.0',
     'theme/styles',
   ],
   entry: ['index.md'],
