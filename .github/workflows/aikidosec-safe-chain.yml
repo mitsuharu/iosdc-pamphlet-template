@@ -12,15 +12,25 @@ on:
       - pnpm-lock.yaml
 
 env:
+  AIKIDO_SAFE_CHAIN_VERSION: '1.5.20'
+  AIKIDO_SAFE_CHAIN_INSTALLER_SHA256: '0ad25efe15d1fa56105157a454d647223e78eb0c53d1f85e3d10afcd722e7bfd'
   # .yarnrc.yml の npmPreapprovedPackages と同じ意図。
   # safe-chain 側にも最小公開経過日数のフィルタがあるため、
   # 自分たちのスコープだけ対象外にする（マルウェア検査自体は有効のまま）
   SAFE_CHAIN_MINIMUM_PACKAGE_AGE_EXCLUSIONS: '@mitsuharu/*'
 
+permissions:
+  contents: read
+
+concurrency:
+  group: aikidosec-safe-chain-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   check-npm-packages-by-aikidosec-safe-chain:
     # 2025/12/18 時点では runner を ubuntu-slim にすると、AikidoSec/safe-chain が動作しない
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
       # リポジトリをチェックアウト
@@ -63,10 +73,14 @@ jobs:
           node-version-file: '.node-version'
 
       # AikidoSec Safe Chain をセットアップ
+      # インストーラーはバージョンを固定し、チェックサムを検証してから実行する
+      # （ダウンロードしたスクリプトをそのままパイプで実行しない）
       - name: Install safe-chain
         run: |
-          export SAFE_CHAIN_VERSION=1.5.7
-          curl -fsSL "https://raw.githubusercontent.com/AikidoSec/safe-chain/$SAFE_CHAIN_VERSION/install-scripts/install-safe-chain.sh" | sh -s -- --ci
+          curl -fsSL "https://github.com/AikidoSec/safe-chain/releases/download/${AIKIDO_SAFE_CHAIN_VERSION}/install-safe-chain.sh" -o /tmp/install-safe-chain.sh
+          echo "${AIKIDO_SAFE_CHAIN_INSTALLER_SHA256}  /tmp/install-safe-chain.sh" | sha256sum -c -
+          sh /tmp/install-safe-chain.sh --ci
+          rm /tmp/install-safe-chain.sh
 
       # AikidoSec Safe Chain を実行 (npm)
       - name: Install dependencies (npm ci)

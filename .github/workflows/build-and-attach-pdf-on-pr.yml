@@ -7,12 +7,18 @@ on:
     types: [opened, synchronize, reopened]
 
 permissions:
-  contents: write
+  # チェックアウトに読み取りだけあればよい。コメント投稿に書き込みが要るのは PR 側
+  contents: read
   pull-requests: write
+
+concurrency:
+  group: build-and-attach-pdf-on-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
   build-and-attach-pdf-on-pr:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     # 環境変数を定義
     env:

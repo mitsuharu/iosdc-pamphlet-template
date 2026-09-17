@@ -17,6 +17,12 @@ updates:
           - "textlint"
           - "textlint-*"
           - "@textlint-ja/*"
+      update-vivliostyle:
+        patterns:
+          - "@vivliostyle/*"
+      update-themes:
+        patterns:
+          - "@mitsuharu/*"
     cooldown:
       default-days: 7
   - package-ecosystem: "github-actions"

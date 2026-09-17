@@ -12,10 +12,15 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: publish-and-release-pdf-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   publish-and-release-pdf:
     name: Build and Publish PDF
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     # 環境変数を定義
     env:
@@ -47,6 +52,18 @@ jobs:
             exit 1
           fi
       
+      # package.json と Makefile で CLI のバージョンがずれていると、
+      # 入稿用 PDF だけ別の CLI でビルドされてしまうので先に確かめる
+      - name: Check Vivliostyle CLI version consistency
+        run: |
+          PKG_VERSION=$(node -p "require('./package.json').devDependencies['@vivliostyle/cli']")
+          MAKE_VERSION=$(sed -n 's/^VIVLIOSTYLE_CLI_IMAGE_TAG := //p' Makefile)
+          echo "package.json: ${PKG_VERSION} / Makefile: ${MAKE_VERSION}"
+          if [ "${PKG_VERSION}" != "${MAKE_VERSION}" ]; then
+            echo "::error::package.json と Makefile で @vivliostyle/cli のバージョンが異なります。"
+            exit 1
+          fi
+
       # vivliostyle-cli コンテナ（UID 1000）が book/ に書き込めるようにする
       - name: Fix workspace ownership for vivliostyle container
         run: sudo chown -R 1000:1000 ${{ github.workspace }}

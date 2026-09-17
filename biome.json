@@ -8,15 +8,16 @@
   "files": {
     "ignoreUnknown": false,
     "includes": [
-      "!prh-rules",
-      "!node_modules",
-      "!**/.vivliostyle",
       "**/*.md",
       "**/*.js",
       "**/*.ts",
       "**/*.json",
       "**/*.yml",
-      "**/*.yaml"
+      "**/*.yaml",
+      "!node_modules",
+      "!**/.vivliostyle",
+      "!prh-rules",
+      "!output"
     ]
   },
   "formatter": {
@@ -26,7 +27,7 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "preset": "recommended"
     }
   },
   "javascript": {
