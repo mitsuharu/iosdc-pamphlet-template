@@ -1,10 +1,10 @@
 # このテンプレート自体を GitHub Release として公開する
 #
 # 原稿リポジトリ側の「納品 PDF を出すリリース」(publish-and-release-pdf.yml) とは別物。
-# あちらは 「n版」「n版m刷」のタグ、こちらは 「v1.2.3」のタグで動く。
+# あちらは 「n版」「n版m刷」のタグ、こちらは 「1.2.3」のタグで動く。
 #
 # 次のどちらかで実行できる
-#   1. v1.2.3 のようなバージョンのタグを push する
+#   1. 1.2.3 のようなバージョンのタグを push する
 #   2. Actions からこのワークフローを手動実行する（バージョンを入力する）
 #
 # どちらの場合も package.json の version と一致していることを確認してから公開する
@@ -20,7 +20,7 @@ on:
         type: string
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - '[0-9]+.[0-9]+.[0-9]+'
 
 permissions:
   contents: write
@@ -65,10 +65,9 @@ jobs:
           INPUT_VERSION: ${{ inputs.version }}
         run: |
           if [ "${EVENT_NAME}" = "push" ]; then
-            # タグは v1.2.3 形式なので先頭の v を落とす
-            RELEASE_VERSION="${REF_NAME#v}"
+            RELEASE_VERSION="${REF_NAME}"
           else
-            RELEASE_VERSION="${INPUT_VERSION#v}"
+            RELEASE_VERSION="${INPUT_VERSION}"
           fi
 
           PACKAGE_VERSION=$(node -p "require('./package.json').version")
@@ -83,7 +82,7 @@ jobs:
             exit 1
           fi
 
-          TAG="v${PACKAGE_VERSION}"
+          TAG="${PACKAGE_VERSION}"
           HEAD_COMMIT=$(git rev-parse HEAD)
           TAG_EXISTS=false
           if git rev-parse --verify "refs/tags/${TAG}" >/dev/null 2>&1; then
