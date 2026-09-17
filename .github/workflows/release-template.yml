@@ -1,0 +1,165 @@
+# このテンプレート自体を GitHub Release として公開する
+#
+# 原稿リポジトリ側の「納品 PDF を出すリリース」(publish-and-release-pdf.yml) とは別物。
+# あちらは 「n版」「n版m刷」のタグ、こちらは 「v1.2.3」のタグで動く。
+#
+# 次のどちらかで実行できる
+#   1. v1.2.3 のようなバージョンのタグを push する
+#   2. Actions からこのワークフローを手動実行する（バージョンを入力する）
+#
+# どちらの場合も package.json の version と一致していることを確認してから公開する
+
+name: Release Template
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'package.json のバージョン（例: 1.2.3）'
+        required: true
+        type: string
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-template
+  cancel-in-progress: false
+
+jobs:
+  release-template:
+    # このテンプレートから作った原稿リポジトリで誤って動かないようにする
+    if: github.repository == 'mitsuharu/iosdc-pamphlet-template'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # 動作確認用にサンプル原稿から作る PDF のパス
+      SAMPLE_PDF_PATH: ./output/output.pdf
+
+    steps:
+      # リポジトリをチェックアウト
+      # タグ push のときはそのタグ、手動実行のときは main を対象にする
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event_name == 'push' && github.ref || 'main' }}
+          fetch-depth: 0
+
+      # Node.jsをセットアップ
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: '.node-version'
+
+      # 公開するバージョンが package.json と一致しているかを確認する
+      - name: Validate release version
+        id: release
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          REF_NAME: ${{ github.ref_name }}
+          INPUT_VERSION: ${{ inputs.version }}
+        run: |
+          if [ "${EVENT_NAME}" = "push" ]; then
+            # タグは v1.2.3 形式なので先頭の v を落とす
+            RELEASE_VERSION="${REF_NAME#v}"
+          else
+            RELEASE_VERSION="${INPUT_VERSION#v}"
+          fi
+
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+
+          if [[ ! "${RELEASE_VERSION}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::バージョンが x.y.z の形式ではありません: ${RELEASE_VERSION}"
+            exit 1
+          fi
+
+          if [ "${RELEASE_VERSION}" != "${PACKAGE_VERSION}" ]; then
+            echo "::error::指定されたバージョン ${RELEASE_VERSION} が package.json の ${PACKAGE_VERSION} と一致しません。"
+            exit 1
+          fi
+
+          TAG="v${PACKAGE_VERSION}"
+          HEAD_COMMIT=$(git rev-parse HEAD)
+          TAG_EXISTS=false
+          if git rev-parse --verify "refs/tags/${TAG}" >/dev/null 2>&1; then
+            TAG_COMMIT=$(git rev-list -n 1 "${TAG}")
+            if [ "${TAG_COMMIT}" != "${HEAD_COMMIT}" ]; then
+              echo "::error::タグ ${TAG} は別のコミット ${TAG_COMMIT} を指しています。"
+              exit 1
+            fi
+            TAG_EXISTS=true
+          fi
+
+          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
+          echo "tag_exists=${TAG_EXISTS}" >> "$GITHUB_OUTPUT"
+
+      # 依存パッケージをインストールする
+      - name: Install dependencies
+        run: |
+          corepack enable
+          yarn install --immutable
+
+      # テンプレートとして壊れていないかを確認する
+      - name: Verify template
+        run: |
+          yarn check
+
+          PKG_VERSION=$(node -p "require('./package.json').devDependencies['@vivliostyle/cli']")
+          MAKE_VERSION=$(sed -n 's/^VIVLIOSTYLE_CLI_IMAGE_TAG := //p' Makefile)
+          if [ "${PKG_VERSION}" != "${MAKE_VERSION}" ]; then
+            echo "::error::package.json と Makefile で @vivliostyle/cli のバージョンが異なります。"
+            exit 1
+          fi
+
+      # サンプル原稿がビルドできることを確認して、成果物をリリースに添える
+      - name: Build sample PDF
+        run: |
+          yarn pdf
+          if [ ! -f "${SAMPLE_PDF_PATH}" ]; then
+            echo "::error::サンプル PDF の生成に失敗しました。"
+            exit 1
+          fi
+          mv "${SAMPLE_PDF_PATH}" ./output/sample.pdf
+
+      # タグがなければ作成して push する（手動実行のとき）
+      - name: Create and push tag
+        if: steps.release.outputs.tag_exists != 'true'
+        env:
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git tag -a "${RELEASE_TAG}" -m "Release template ${RELEASE_TAG}"
+          git push origin "refs/tags/${RELEASE_TAG}"
+
+      # GitHub Release を作成する
+      - name: Create GitHub release
+        env:
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
+        run: |
+          if gh release view "${RELEASE_TAG}" >/dev/null 2>&1; then
+            echo "リリース ${RELEASE_TAG} はすでに作成済みです。"
+            exit 0
+          fi
+
+          cat > /tmp/notes.md <<'NOTES'
+          iOSDC Japan のパンフレット原稿を書くためのテンプレートです。
+
+          このリポジトリの **Use this template** から、自分の原稿リポジトリを作ってください。
+          添付の `sample.pdf` は、このバージョンのテンプレートでサンプル原稿をビルドしたものです。
+
+          ---
+
+          NOTES
+
+          gh release create "${RELEASE_TAG}" \
+            --verify-tag \
+            --title "${RELEASE_TAG}" \
+            --notes-file /tmp/notes.md \
+            --generate-notes \
+            ./output/sample.pdf
