@@ -4,7 +4,10 @@
   @mitsuharu/vivliostyle-theme-iosdc-pamphlet の上に重ねる、原稿ごとの調整です。
   Vivliostyle Themes v3 では、素の CSS プロパティを書くのではなく
   --vs-* 変数を設定するのが基本です。
-  変数の一覧は node_modules/@vivliostyle/theme-base/dist/css-variables.json にあります。
+  使える変数は theme-base のドキュメントを参照してください。
+  https://github.com/vivliostyle/themes/tree/main/packages/%40vivliostyle/theme-base#readme
+  一度ビルドすると、次のファイルにも一覧が展開されます。
+  .vivliostyle/themes/node_modules/@vivliostyle/theme-base/dist/css-variables.json
 */
 
 :root {
