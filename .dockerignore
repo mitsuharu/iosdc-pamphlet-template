@@ -1,0 +1,9 @@
+# ビルドコンテキストに送らないもの
+.git
+.github
+node_modules
+.yarn/cache
+.yarn/install-state.gz
+.vivliostyle
+output
+*.pdf
