@@ -202,7 +202,7 @@ yarn lint
 yarn textlint ./manuscripts/hogehoge.md
 ```
 
-VS Code を利用している場合は、プラグイン [vscode\-textlint](https://marketplace.visualstudio.com/items?itemName=taichi.vscode-textlint) を追加すれば、ファイル保存時に自動実行されます。他のエディターをご利用の方は [ここ](https://textlint.github.io/docs/integrations.html) からそれぞれのプラグインを追加してください。
+VS Code を利用している場合は、プラグイン [textlint](https://marketplace.visualstudio.com/items?itemName=3w36zj6.textlint) を追加すれば、ファイル保存時に自動実行されます（`.vscode/extensions.json` で推奨しています）。他のエディターをご利用の方は [ここ](https://textlint.github.io/docs/integrations.html) からそれぞれのプラグインを追加してください。
 
 ### 無効
 
