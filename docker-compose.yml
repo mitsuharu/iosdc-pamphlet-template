@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   lint:
     build:
@@ -7,7 +5,7 @@ services:
       dockerfile: DockerfileForDockerCompose
     image: ${TEXT_LINT_IMAGE_NAME}:${TEXT_LINT_IMAGE_TAG}
     volumes:
-      - .:/workspaces/iosdc-pamphlet-template
-      - /workspaces/iosdc-pamphlet-template/node_modules
-    working_dir: /workspaces/iosdc-pamphlet-template
+      - .:/workspace
+      - /workspace/node_modules
+    working_dir: /workspace
     command: yarn lint
