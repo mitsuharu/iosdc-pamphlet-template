@@ -1,5 +1,11 @@
 # AikidoSec/safe-chain を利用して、悪意ある npm パッケージが含まれていないかチェックする
 # https://github.com/AikidoSec/safe-chain
+#
+# このリポジトリはテンプレートなので、使う人がどのパッケージマネージャーを
+# 選ぶか分からない。そこで、差分ではなくリポジトリの中身から判定する。
+# 差分（どのロックファイルが変わったか）で判定すると、package.json だけを
+# 変更した PR ではどれも真にならず、検査が素通りしてしまうため。
+
 name: Check npm packages by AikidoSec Safe Chain
 
 on:
@@ -8,8 +14,14 @@ on:
     paths:
       - package.json
       - package-lock.json
+      - npm-shrinkwrap.json
       - yarn.lock
       - pnpm-lock.yaml
+      # 依存の解決先や取得の条件を変えるファイル
+      - .yarnrc.yml
+      - .npmrc
+      # このワークフロー自体を変更したときも動かして確かめる
+      - .github/workflows/aikidosec-safe-chain.yml
 
 env:
   AIKIDO_SAFE_CHAIN_VERSION: '1.5.20'
@@ -37,40 +49,52 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      # どのパッケージマネージャーのファイルが変更されたかを検出する
-      # ni などパッケージマネージャーのラッパーツールは、safe-chain が対応していないため、直接 lockfile を見る
-      - name: Detect changed files
-        id: changes
-        uses: dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d # v4.0.3
-        with:
-          filters: |
-            manifest:
-              - 'package.json'
-            npm:
-              - 'package-lock.json'
-            yarn:
-              - 'yarn.lock'
-            pnpm:
-              - 'pnpm-lock.yaml'
-      
-      # 1つだけ許可：複数 lockfile が変わったら fail
-      - name: Fail if multiple lockfiles changed
-        run: |
-          count=0
-          [[ "${{ steps.changes.outputs.npm }}" == "true" ]] && count=$((count+1))
-          [[ "${{ steps.changes.outputs.yarn }}" == "true" ]] && count=$((count+1))
-          [[ "${{ steps.changes.outputs.pnpm }}" == "true" ]] && count=$((count+1))
-
-          if [ "$count" -gt 1 ]; then
-            echo "::error::Multiple lockfiles were changed in this PR. Please update only one package manager lockfile."
-            exit 1
-          fi
-      
       # Node.jsをセットアップ
       - name: Setup Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: '.node-version'
+
+      # 使うパッケージマネージャーを決める
+      #   1. package.json の packageManager フィールド（corepack の標準）
+      #   2. 置かれているロックファイル
+      - name: Detect package manager
+        id: pm
+        run: |
+          MANAGER=$(node -p "(require('./package.json').packageManager || '').split('@')[0]" 2>/dev/null || echo "")
+
+          if [ -n "${MANAGER}" ]; then
+            echo "packageManager フィールドから判定しました: ${MANAGER}"
+          else
+            FOUND=""
+            [ -f yarn.lock ] && FOUND="${FOUND} yarn"
+            [ -f pnpm-lock.yaml ] && FOUND="${FOUND} pnpm"
+            { [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; } && FOUND="${FOUND} npm"
+            # shellcheck disable=SC2086
+            set -- ${FOUND}
+
+            if [ "$#" -eq 0 ]; then
+              echo "::error::パッケージマネージャーを判定できません。package.json に packageManager を書くか、ロックファイルをコミットしてください。"
+              exit 1
+            fi
+            if [ "$#" -gt 1 ]; then
+              echo "::error::ロックファイルが複数あります ($*)。package.json の packageManager で使うものを明示してください。"
+              exit 1
+            fi
+
+            MANAGER="$1"
+            echo "ロックファイルから判定しました: ${MANAGER}"
+          fi
+
+          case "${MANAGER}" in
+            npm | yarn | pnpm) ;;
+            *)
+              echo "::error::このワークフローが対応していないパッケージマネージャーです: ${MANAGER}"
+              exit 1
+              ;;
+          esac
+
+          echo "manager=${MANAGER}" >> "$GITHUB_OUTPUT"
 
       # AikidoSec Safe Chain をセットアップ
       # インストーラーはバージョンを固定し、チェックサムを検証してから実行する
@@ -82,22 +106,28 @@ jobs:
           sh /tmp/install-safe-chain.sh --ci
           rm /tmp/install-safe-chain.sh
 
-      # AikidoSec Safe Chain を実行 (npm)
-      - name: Install dependencies (npm ci)
-        if: steps.changes.outputs.npm == 'true'
+      # ロックファイルどおりに依存をインストールする
+      # safe-chain が割り込み、悪意あるパッケージを検出すると失敗する
+      - name: Install dependencies
+        env:
+          MANAGER: ${{ steps.pm.outputs.manager }}
         run: |
-          npm ci
+          case "${MANAGER}" in
+            yarn)
+              corepack enable
+              INSTALL="yarn install --immutable"
+              ;;
+            pnpm)
+              corepack enable
+              INSTALL="pnpm install --frozen-lockfile"
+              ;;
+            npm)
+              INSTALL="npm ci"
+              ;;
+          esac
 
-      # AikidoSec Safe Chain を実行 (yarn)
-      - name: Install dependencies (yarn immutable)
-        if: steps.changes.outputs.yarn == 'true'
-        run: |
-          corepack enable || true
-          yarn install --immutable
-
-      # AikidoSec Safe Chain を実行 (pnpm)
-      - name: Install dependencies (pnpm frozen-lockfile)
-        if: steps.changes.outputs.pnpm == 'true'
-        run: |
-          corepack enable || true
-          pnpm install --frozen-lockfile
+          echo "実行: ${INSTALL}"
+          if ! ${INSTALL}; then
+            echo "::error::インストールに失敗しました。package.json の依存を変更してロックファイルを更新していない場合は、手元でインストールし直して、ロックファイルもコミットしてください。"
+            exit 1
+          fi
