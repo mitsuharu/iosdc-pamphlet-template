@@ -186,6 +186,18 @@ yarn press-local
   - TechBooster の [ルール](https://github.com/TechBooster/ReVIEW-Template/tree/master/prh-rules) を使用しています。
   - iOS に関するルールはほとんどないので適宜追加してください。
 
+#### 既知の制限
+
+`.textlintrc.json` で `@textlint-ja/preset-ai-writing` の `ai-tech-writing-guideline` に `severity: "info"`（サジェスト扱い）を指定していますが、**現在は効かず error のまま報告されます**。textlint 15.8.0 では、プリセットの中のルールに対する `severity` が適用されないためです（トップレベルのルールでは効きます）。
+
+うるさく感じる場合は、次のように無効にしてください。
+
+```json
+"@textlint-ja/preset-ai-writing": {
+  "ai-tech-writing-guideline": false
+}
+```
+
 その他、スペルチェックのルール `textlint-rule-spellchecker` がありますが、エディターのスペルチェックと競合しやすいので、今回は追加していません。VS Code を利用している場合は、プラグイン [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) を追加すれば、スペルチェックが行われます。
 
 ### 実行
