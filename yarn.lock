@@ -776,24 +776,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pdf-lib/standard-fonts@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@pdf-lib/standard-fonts@npm:1.0.0"
-  dependencies:
-    pako: "npm:^1.0.6"
-  checksum: 10c0/c683adfb764cd235a8370a0c1d5a8d7e90e3499ad33cdecfb92e4d48b0d36cfd038e3a875ebd0937a5646ee1578d793ab98f9c374be360c9a05d2699c1caedf4
-  languageName: node
-  linkType: hard
-
-"@pdf-lib/upng@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@pdf-lib/upng@npm:1.0.1"
-  dependencies:
-    pako: "npm:^1.0.10"
-  checksum: 10c0/9c300c513c1089e561c0cccac01f396a24efb9b0e9c922a39248cb09dfced70c05b9facdfce11a7f22cbedb4129593630a18111b90a57ef34ea4c3df98f2ac1d
-  languageName: node
-  linkType: hard
-
 "@pkgjs/parseargs@npm:^0.11.0":
   version: 0.11.0
   resolution: "@pkgjs/parseargs@npm:0.11.0"
@@ -1555,9 +1537,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vivliostyle/cli@npm:11.3.3":
-  version: 11.3.3
-  resolution: "@vivliostyle/cli@npm:11.3.3"
+"@vivliostyle/cli@npm:11.4.0":
+  version: 11.4.0
+  resolution: "@vivliostyle/cli@npm:11.4.0"
   dependencies:
     "@babel/code-frame": "npm:7.26.2"
     "@bluwy/giget-core": "npm:0.1.3"
@@ -1570,7 +1552,7 @@ __metadata:
     "@types/command-exists": "npm:1.2.3"
     "@vivliostyle/jsdom": "npm:25.0.1-vivliostyle-cli.2"
     "@vivliostyle/vfm": "npm:2.7.2"
-    "@vivliostyle/viewer": "npm:2.45.1"
+    "@vivliostyle/viewer": "npm:2.45.2"
     ajv: "npm:8.18.0"
     ajv-formats: "npm:3.0.1"
     archiver: "npm:7.0.1"
@@ -1587,7 +1569,7 @@ __metadata:
     fast-xml-parser: "npm:5.7.0"
     fs-extra: "npm:11.2.0"
     github-slugger: "npm:2.0.0"
-    handlebars: "npm:4.7.9"
+    handlebars: "npm:4.7.10"
     hast-util-to-html: "npm:9.0.5"
     hastscript: "npm:9.0.1"
     mime-types: "npm:3.0.1"
@@ -1596,7 +1578,6 @@ __metadata:
     node-stream-zip: "npm:1.15.0"
     npm-package-arg: "npm:12.0.2"
     os-locale: "npm:8.0.0"
-    pdf-lib: "npm:1.17.1"
     picomatch: "npm:4.0.4"
     postcss: "npm:8.5.26"
     postcss-load-config: "npm:6.0.1"
@@ -1614,7 +1595,7 @@ __metadata:
     tmp: "npm:0.2.7"
     upath: "npm:2.0.1"
     uuid: "npm:14.0.0"
-    valibot: "npm:1.2.0"
+    valibot: "npm:1.4.2"
     validate-npm-package-name: "npm:7.0.0"
     vfile: "npm:4.2.1"
     vite: "npm:8.1.0"
@@ -1627,16 +1608,16 @@ __metadata:
   bin:
     vivliostyle: dist/cli.js
     vs: dist/cli.js
-  checksum: 10c0/7722b677ef458c9ad6dcbdb933a6da94fdf2114cd604744831f431bba3912b2173c694bbaacd47c66d06ad09b77b90a785969f2696c31d5a671f4bf7f69132ea
+  checksum: 10c0/199b48f588d300ef51dd747ec5a22b53d7aa2fe0aa403333fc3963a70a70fc39920544be332e79053f20e35c2d399d185c39b5ab7c80d9e748e8608cf21b615d
   languageName: node
   linkType: hard
 
-"@vivliostyle/core@npm:^2.45.1":
-  version: 2.45.1
-  resolution: "@vivliostyle/core@npm:2.45.1"
+"@vivliostyle/core@npm:^2.45.2":
+  version: 2.45.2
+  resolution: "@vivliostyle/core@npm:2.45.2"
   dependencies:
     fast-diff: "npm:^1.2.0"
-  checksum: 10c0/df58dd4ad9e25541c55274a53e316ab46c158df8c8a6735ea28b81dbac12c10c3b3a620c087569c878e5c641e640ab99495bd71da584c112ea5e4a2de5a4af23
+  checksum: 10c0/38c2b796057c504f4568df82bd888c568f298add54625eb6892ca15f6afeb6551e70d31206ef00b20b20a55d3dd1ba29965b57d09e8d00c7108914a73a114ec3
   languageName: node
   linkType: hard
 
@@ -1817,14 +1798,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vivliostyle/viewer@npm:2.45.1":
-  version: 2.45.1
-  resolution: "@vivliostyle/viewer@npm:2.45.1"
+"@vivliostyle/viewer@npm:2.45.2":
+  version: 2.45.2
+  resolution: "@vivliostyle/viewer@npm:2.45.2"
   dependencies:
-    "@vivliostyle/core": "npm:^2.45.1"
+    "@vivliostyle/core": "npm:^2.45.2"
     i18next-ko: "npm:^3.0.1"
     knockout: "npm:^3.5.0"
-  checksum: 10c0/ed7206c6670e9ed9a9ab77d98f32de4b265e42b235070e93139c82cf27caef55ecf1d017915a068bff6500b8bcd3de74c9a5fa87ecc96bb6745c9cd110b8ca2f
+  checksum: 10c0/36b9afed32ec893997d7dc848b97d3ceea9068f5869ca2107307e312957e95c10a047295093ba1ec2775abdf20136c485dce5c70c73266feeed98cafa2672ea3
   languageName: node
   linkType: hard
 
@@ -3626,11 +3607,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"handlebars@npm:4.7.9":
-  version: 4.7.9
-  resolution: "handlebars@npm:4.7.9"
+"handlebars@npm:4.7.10":
+  version: 4.7.10
+  resolution: "handlebars@npm:4.7.10"
   dependencies:
-    minimist: "npm:^1.2.5"
+    minimist: "npm:^1.2.8"
     neo-async: "npm:^2.6.2"
     source-map: "npm:^0.6.1"
     uglify-js: "npm:^3.1.4"
@@ -3640,7 +3621,7 @@ __metadata:
       optional: true
   bin:
     handlebars: bin/handlebars
-  checksum: 10c0/22f8105a7e68e81aff2662bb434edf05f757d21d850731d71cec886d69c10cd33d3c43e34b2892968ec62de8241611851d3d0674c8ef324ea3e01dc66262faa9
+  checksum: 10c0/9b5573584ae5836172ae3f1502d9819568ba1b92ee83b81b18223beeb4c07486595e7b0fa633102beabc66ed06fe6e7da1dd9a9ea8c7072b9550b9a88809165c
   languageName: node
   linkType: hard
 
@@ -4284,7 +4265,7 @@ __metadata:
   dependencies:
     "@biomejs/biome": "npm:2.5.13"
     "@textlint-ja/textlint-rule-preset-ai-writing": "npm:^1.7.0"
-    "@vivliostyle/cli": "npm:11.3.3"
+    "@vivliostyle/cli": "npm:11.4.0"
     press-ready: "npm:^4.0.3"
     textlint: "npm:^15.8.0"
     textlint-filter-rule-comments: "npm:^1.3.0"
@@ -5588,7 +5569,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimist@npm:^1.2.5":
+"minimist@npm:^1.2.8":
   version: 1.2.8
   resolution: "minimist@npm:1.2.8"
   checksum: 10c0/19d3fcdca050087b84c2029841a093691a91259a47def2f18222f41e7645a0b7c44ef4b40e88a1e58a40c84d2ef0ee6047c55594d298146d0eb3f6b737c20ce6
@@ -6142,13 +6123,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pako@npm:^1.0.10, pako@npm:^1.0.11, pako@npm:^1.0.6":
-  version: 1.0.11
-  resolution: "pako@npm:1.0.11"
-  checksum: 10c0/86dd99d8b34c3930345b8bbeb5e1cd8a05f608eeb40967b293f72fe469d0e9c88b783a8777e4cc7dc7c91ce54c5e93d88ff4b4f060e6ff18408fd21030d9ffbe
-  languageName: node
-  linkType: hard
-
 "parse-conflict-json@npm:^5.0.1":
   version: 5.0.1
   resolution: "parse-conflict-json@npm:5.0.1"
@@ -6267,18 +6241,6 @@ __metadata:
   version: 2.0.1
   resolution: "path-to-glob-pattern@npm:2.0.1"
   checksum: 10c0/869243211eeb78961c04768b5791e084f1e31d40150b4683ab1b3d6808972dc81284ac2a36650840e68b06fae60bacd5ac8e4433876aa1cfd9e602857c52aa21
-  languageName: node
-  linkType: hard
-
-"pdf-lib@npm:1.17.1":
-  version: 1.17.1
-  resolution: "pdf-lib@npm:1.17.1"
-  dependencies:
-    "@pdf-lib/standard-fonts": "npm:^1.0.0"
-    "@pdf-lib/upng": "npm:^1.0.1"
-    pako: "npm:^1.0.11"
-    tslib: "npm:^1.11.1"
-  checksum: 10c0/a9489a402880dacd1389a3e14ff8f6139d58e3bc82f26b0fcbd0798b841aee6ccb7fcfab0992b574e57b40404ced0330a7170b3c6467363461a9df5d9daec489
   languageName: node
   linkType: hard
 
@@ -8406,13 +8368,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^1.11.1":
-  version: 1.14.1
-  resolution: "tslib@npm:1.14.1"
-  checksum: 10c0/69ae09c49eea644bc5ebe1bca4fa4cc2c82b7b3e02f43b84bd891504edf66dbc6b2ec0eef31a957042de2269139e4acff911e6d186a258fb14069cd7f6febce2
-  languageName: node
-  linkType: hard
-
 "tslib@npm:^2.4.0":
   version: 2.8.1
   resolution: "tslib@npm:2.8.1"
@@ -8930,6 +8885,18 @@ __metadata:
     typescript:
       optional: true
   checksum: 10c0/e6897ed2008fc900380a6ce39b62bc5fca45fd5e070f70571c6380ede3ba026d0b7016230215d87f7f3d672a28dbde5a0522d39830b493fdc3dccd1a59ef4ee6
+  languageName: node
+  linkType: hard
+
+"valibot@npm:1.4.2":
+  version: 1.4.2
+  resolution: "valibot@npm:1.4.2"
+  peerDependencies:
+    typescript: ">=5"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 10c0/71b861de928fd5533b03fc4d84c619c07602f176d2bc6b12c5c80b2a6e889574c4126c843dd0771ce450bbb29566ca6df13d5b538ce5e4c39c2fccfb7623cf4e
   languageName: node
   linkType: hard
 
